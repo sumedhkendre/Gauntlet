@@ -14,6 +14,7 @@ venv/
 # Node / Vite
 node_modules/
 frontend/dist/
+demo_frames/
 
 # OS/editor files
 .DS_Store

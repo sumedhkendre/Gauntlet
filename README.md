@@ -380,6 +380,9 @@ The full attack flow also requires a reachable Ollama instance with the selected
 - [ ] Add a final demo screenshot or recording if the event requires visual evidence.
 - [ ] Confirm the event's submission form, repository visibility, and deadline.
 
+The included `GAUNTLET-demo.mp4` is a captioned overview video. Recreate it with
+`python scripts/create_demo_video.py` after installing Pillow and ffmpeg.
+
 ## Known limitations
 
 - Dashboard counters and history/memory pages are currently placeholders.
