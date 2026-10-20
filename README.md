@@ -145,6 +145,7 @@ GAUNTLET is an AI security and red-teaming testbed. It sends attack prompts to a
 - Python 3.11+
 - Ollama running locally at `http://localhost:11434`
 - The configured Ollama model available locally (defaults to `llama3.2`)
+- Docker (optional, for a reproducible backend run)
 
 ## Run locally
 
@@ -160,6 +161,13 @@ python -m uvicorn main:app --reload --port 8000
 ```
 
 The health check is available at `http://localhost:8000/health`.
+
+### Docker backend
+
+```bash
+docker build -t gauntlet-backend .
+docker run --rm -p 8000:8000 --env-file .env.example gauntlet-backend
+```
 
 ### Frontend
 >>>>>>> 82d95db (docs: prepare Gauntlet for buildathon submission)
@@ -365,6 +373,9 @@ The full attack flow also requires a reachable Ollama instance with the selected
 - [x] Backend imports and exposes `/health`.
 - [x] Rule-judge smoke test succeeds.
 - [x] Local run instructions are documented.
+- [x] Runtime versions are pinned in `.python-version` and `.nvmrc`.
+- [x] A Dockerfile provides a reproducible backend build.
+- [x] Non-secret settings are listed in `.env.example`.
 - [ ] Verify the end-to-end attack flow against Ollama.
 - [ ] Add a final demo screenshot or recording if the event requires visual evidence.
 - [ ] Confirm the event's submission form, repository visibility, and deadline.
