@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # GAUNTLET — AI Security Testbed
 
@@ -125,6 +126,43 @@ Replace `<YOUR_GITHUB_REPOSITORY_URL>` with your actual GitHub repository URL.
 ### 2. Set Up the Frontend
 
 Open a terminal in the frontend directory:
+=======
+# GAUNTLET
+
+GAUNTLET is an AI security and red-teaming testbed. It sends attack prompts to a configured Ollama target model, evaluates the response with multiple judges, and stores attack/session data in SQLite.
+
+## Demo flow
+
+1. Start the FastAPI backend.
+2. Start the Vite frontend.
+3. Open the frontend URL shown by Vite.
+4. Open **Attack Console**, choose an attack type, enter a prompt, and select **Run Attack**.
+5. Review the target response and evaluation returned by the backend.
+
+## Requirements
+
+- Node.js 18+ and npm
+- Python 3.11+
+- Ollama running locally at `http://localhost:11434`
+- The configured Ollama model available locally (defaults to `llama3.2`)
+
+## Run locally
+
+### Backend
+
+```bash
+cd backend
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload --port 8000
+```
+
+The health check is available at `http://localhost:8000/health`.
+
+### Frontend
+>>>>>>> 82d95db (docs: prepare Gauntlet for buildathon submission)
 
 ```bash
 cd frontend
@@ -132,6 +170,7 @@ npm install
 npm run dev
 ```
 
+<<<<<<< HEAD
 Vite will display the local development URL in the terminal, usually:
 
 ```text
@@ -288,3 +327,51 @@ No license has been specified yet. Unless a license is added to the repository, 
 **GAUNTLET — AI Security Testbed**
 
 *Simulate. Analyze. Defend.*
+=======
+The frontend expects the backend at `http://localhost:8000` and sends the local API key `gauntlet-local-key`.
+
+## Configuration
+
+The backend reads these optional environment variables:
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama endpoint |
+| `TARGET_MODEL` | `llama3.2` | Model under test |
+| `JUDGE_MODEL` | `llama3.2` | Model used by the LLM judge |
+| `DATABASE_NAME` | `gauntlet.db` | SQLite database path |
+| `GAUNTLET_API_KEY` | `gauntlet-local-key` | API key required by attack routes |
+
+## Verification
+
+From `frontend/`:
+
+```bash
+npm run build
+```
+
+From `backend/`:
+
+```bash
+python -m compileall -q .
+python test_rule_judge.py
+```
+
+The full attack flow also requires a reachable Ollama instance with the selected model.
+
+## Submission checklist
+
+- [x] Frontend production build succeeds.
+- [x] Backend imports and exposes `/health`.
+- [x] Rule-judge smoke test succeeds.
+- [x] Local run instructions are documented.
+- [ ] Verify the end-to-end attack flow against Ollama.
+- [ ] Add a final demo screenshot or recording if the event requires visual evidence.
+- [ ] Confirm the event's submission form, repository visibility, and deadline.
+
+## Known limitations
+
+- Dashboard counters and history/memory pages are currently placeholders.
+- End-to-end attack execution depends on Ollama and the selected model being available.
+- The supplied Python requirements file contains many platform-specific and heavyweight packages; install only the supported environment's dependencies for the demo platform.
+>>>>>>> 82d95db (docs: prepare Gauntlet for buildathon submission)

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venv*/
+venv/
+
+# Local configuration and runtime data
+.env
+*.db
+*.sqlite
+*.sqlite3
+
+# Node / Vite
+node_modules/
+frontend/dist/
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
